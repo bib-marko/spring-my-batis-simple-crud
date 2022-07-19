@@ -18,9 +18,7 @@ public class BookController {
     private BookRepository bookRepository;
 
     @GetMapping(value = "/list")
-    List<Book> getAllBooks(){
-        return bookRepository.findAll();
-    }
+    List<Book> getAllBooks(){ return bookRepository.findAll(); }
 
     @PostMapping(value = "/new")
     int newBook(@RequestBody Book book) {
@@ -45,13 +43,10 @@ public class BookController {
      int updateBook(@PathVariable(value = "id") Long bookId, @RequestBody Book bookDetails) {
         try{
             Book book = bookRepository.findById(bookId);
-            book.setIsbn(bookDetails.getIsbn());
-            book.setTitle(bookDetails.getTitle());
-            book.setAuthor(bookDetails.getAuthor());
-            book.setDescription(bookDetails.getDescription());
+            book = new Book(bookId, bookDetails.getIsbn(), bookDetails.getTitle(), bookDetails.getAuthor(), bookDetails.getDescription(), book.getGenre());
             return bookRepository.update(book);
         }catch (RuntimeException ex){
-            throw new validateBookIfNotExistingException(bookDetails.getId());
+            throw new validateBookIfNotExistingException(bookId);
         }
     }
 

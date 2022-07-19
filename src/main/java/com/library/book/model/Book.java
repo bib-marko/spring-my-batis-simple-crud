@@ -10,7 +10,7 @@ public class Book{
     private long id;
     private String isbn, title, author, description,genre;
 
-    public Book(long id, String isbn, String title, String author, String description, String genre) {
+    public Book(Long id, String isbn, String title, String author, String description, String genre) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -18,4 +18,5 @@ public class Book{
         this.description = description;
         this.genre = genre;
     }
+
 }
