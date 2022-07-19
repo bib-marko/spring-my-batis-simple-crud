@@ -8,11 +8,7 @@ import lombok.Setter;
 public class Book{
 
     private long id;
-    private String isbn;
-    private String title;
-    private String author;
-    private String description;
-    private String genre;
+    private String isbn, title, author, description,genre;
 
     public Book(long id, String isbn, String title, String author, String description, String genre) {
         this.id = id;
