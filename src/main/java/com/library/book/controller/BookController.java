@@ -2,6 +2,7 @@ package com.library.book.controller;
 
 import com.library.book.exception.validateBookIfExistingException;
 import com.library.book.exception.validateBookIfNotExistingException;
+import com.library.book.exception.validateBookSize;
 import com.library.book.model.Book;
 import com.library.book.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,14 +41,14 @@ public class BookController {
     }
 
     @PostMapping("/update/{id}")
-     int updateBook(@PathVariable(value = "id") Long bookId, @RequestBody Book bookDetails) {
+    int updateBook(@PathVariable(value = "id") Long bookId, @RequestBody Book bookDetails) {
         try{
-            Book book = bookRepository.findById(bookId);
-            book = new Book(bookId, bookDetails.getIsbn(), bookDetails.getTitle(), bookDetails.getAuthor(), bookDetails.getDescription(), book.getGenre());
+            Book book = new Book(bookId, bookDetails.getIsbn(), bookDetails.getTitle(), bookDetails.getAuthor(), bookDetails.getDescription(), bookDetails.getGenre());
             return bookRepository.update(book);
         }catch (RuntimeException ex){
             throw new validateBookIfNotExistingException(bookId);
         }
     }
+
 
 }

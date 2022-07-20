@@ -14,7 +14,7 @@ public interface BookRepository {
     @Select("SELECT * FROM book WHERE id = #{id}")
     Book findById(long id);
 
-    @Insert("INSERT INTO book(id, isbn, title, author, book_desc, genre) VALUES (#{id}, #{isbn}, #{title}, #{author}, #{description}, #{genre})")
+    @Insert("INSERT INTO book(isbn, title, author, book_desc, genre) VALUES (#{isbn}, #{title}, #{author}, #{description}, #{genre})")
     int insert(Book Book);
 
     @Delete("DELETE FROM book WHERE id = #{id}")
