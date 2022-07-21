@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Library</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+</head>
+<body>
+<div class="container">
+    <form>
+        <div style="text-align: center;"><H3 id="fromTitle">Add New Book</H3></div>
+        <div class="row">
+            <div class="col-25">
+                <p><label name="id" id="id" style="display: none;" disabled></label></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="isbn">ISBN</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="isbn" id="isbn">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="title">TITLE</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="title" id="title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="author">AUTHOR</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="author" id="author">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="desc">DESCRIPTION</label>
+            </div>
+            <div class="col-75">
+              <textarea id="desc" name="desc" placeholder="Write something.." style="height:200px"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-25">
+                <label for="genre">GENRE</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="genre" id="genre">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-10">
+                <button id="btnAdd" class="button add" onclick="addNewBook()">Add New Book</button>
+            </div>
+            <div class="col-10">
+                <button id="btnSave" class="button save" onclick="saveUpdate()" style="display: none;">Save Update</button>
+            </div>
+            <div class="col-10">
+                <button id="btnCancel" class="button cancel" style="display: none;">CANCEL</button>
+            </div>
+        </div>
+    </form>
+</div>
+<table id="data"></table>
+</body>
+<script src="/css/script.js"></script>
+</html>

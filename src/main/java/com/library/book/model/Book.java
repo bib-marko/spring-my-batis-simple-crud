@@ -6,7 +6,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Book{
-
     private long id;
     private String isbn, title, author, description,genre;
 
@@ -18,5 +17,4 @@ public class Book{
         this.description = description;
         this.genre = genre;
     }
-
 }

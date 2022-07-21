@@ -2,7 +2,6 @@ package com.library.book.controller;
 
 import com.library.book.exception.validateBookIfExistingException;
 import com.library.book.exception.validateBookIfNotExistingException;
-import com.library.book.exception.validateBookSize;
 import com.library.book.model.Book;
 import com.library.book.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/book")
@@ -50,5 +50,9 @@ public class BookController {
         }
     }
 
+    @RequestMapping(value = "/")
+    public static String welcome(){
+        return "index";
+    }
 
 }
