@@ -14,8 +14,12 @@ public interface BookRepository {
     @Select("SELECT * FROM book WHERE id = #{id}")
     Book findById(long id);
 
+    @Select("SELECT * FROM book WHERE isbn = #{isbn}")
+    Book findIsbn(String isbn);
+
     @Insert("INSERT INTO book(isbn, title, author, book_desc, genre) VALUES (#{isbn}, #{title}, #{author}, #{description}, #{genre})")
-    int insert(Book Book);
+    @Options(useGeneratedKeys=true, keyProperty="id")
+    Long insert(Book Book);
 
     @Delete("DELETE FROM book WHERE id = #{id}")
     void deleteById(long id);

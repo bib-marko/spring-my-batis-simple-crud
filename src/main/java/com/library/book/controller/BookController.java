@@ -1,14 +1,11 @@
 package com.library.book.controller;
 
-import com.library.book.exception.validateBookIfExistingException;
-import com.library.book.exception.validateBookIfNotExistingException;
 import com.library.book.model.Book;
-import com.library.book.repository.BookRepository;
+import com.library.book.service.bookImplementation.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -16,37 +13,46 @@ import java.util.Optional;
 public class BookController {
 
     @Autowired
-    private BookRepository bookRepository;
+    private final BookService bookService;
 
-    @GetMapping(value = "/list")
-    List<Book> getAllBooks(){ return bookRepository.findAll(); }
-
-    @PostMapping(value = "/new")
-    int newBook(@RequestBody Book book) {
-        try{
-            return bookRepository.insert(book);
-        }catch (RuntimeException ex){
-            throw new validateBookIfExistingException(book.getId());
-        }
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
     }
 
+    @GetMapping(value = "/list")
+    List<Book> getAllBooks() { return bookService.findAll(); }
+
+    @PostMapping(value = "/new")
+    void newBook(@RequestBody Book book) {
+        bookService.insert(book);
+    }
+
+//    @PostMapping(value = "/delete/{id}")
+//    void deleteBook(@PathVariable Long id) {
+//        bookService.deleteById(id);
+//    }
+
+//    @PostMapping("/update/{id}")
+//    int updateBook(@PathVariable(value = "id") Long bookId, @RequestBody Book bookDetails) {
+//        bookDetails.setId(bookId);
+//        return bookService.update(bookId, bookDetails);
+//    }
+
     @PostMapping(value = "/delete/{id}")
-    void deleteBook(@PathVariable Long id) {
-        Optional<Book> bookData = Optional.ofNullable(bookRepository.findById(id));
-        if(bookData.isPresent()){
-            bookRepository.deleteById(id);
-        }else{
-            throw new validateBookIfNotExistingException(id);
+    void deleteBook(@PathVariable String id) {
+        String[] listOfId = id.split(",");
+        for(String list : listOfId){
+            bookService.deleteById(Long.valueOf(list));
         }
+
     }
 
     @PostMapping("/update/{id}")
-    int updateBook(@PathVariable(value = "id") Long bookId, @RequestBody Book bookDetails) {
-        try{
-            Book book = new Book(bookId, bookDetails.getIsbn(), bookDetails.getTitle(), bookDetails.getAuthor(), bookDetails.getDescription(), bookDetails.getGenre());
-            return bookRepository.update(book);
-        }catch (RuntimeException ex){
-            throw new validateBookIfNotExistingException(bookId);
+    void updateBook(@PathVariable(value = "id") String bookId, @RequestBody Book bookDetails) {
+        String[] listOfId = bookId.split(",");
+        for(String list : listOfId){
+            bookDetails.setId(Long.parseLong(list));
+            bookService.update(Long.valueOf(list), bookDetails);
         }
     }
 

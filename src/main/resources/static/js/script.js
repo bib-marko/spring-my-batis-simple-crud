@@ -76,18 +76,16 @@ async function proccessData(url, operation) {
             genre: bookGenre.value
         })
     }).then((res) => res.json()).then(data => console.log(data))
-    let reloadPage = (operation === "add") ? confirm("Book added Successfully") : confirm("Book " + getId + " Updated Successfully");
-    if(reloadPage){ window.location.reload(); }
+    if((operation === "add") ? confirm("Book added Successfully") : confirm("Book " + getId + " Updated Successfully")){ window.location.reload(); }
 }
 
 async function deleteBook(str) {
-    let isExecuted = confirm("Do you want to delete book " + str);
-    if(isExecuted){
+    if(confirm("Do you want to delete book " + str)){
         fetch('http://localhost:8080/book/delete/'+str,{
             method: "POST",
             header: {"Content-type": "application/json",}
         }).then((res) => res.json()).then(data => console.log(data))
-        window.location.reload();
+        location.reload();
     }
 }
 

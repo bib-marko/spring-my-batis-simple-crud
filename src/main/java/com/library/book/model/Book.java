@@ -1,20 +1,14 @@
 package com.library.book.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+//@Data - for all
 @Getter
 @Setter
+@AllArgsConstructor
 public class Book{
     private long id;
     private String isbn, title, author, description,genre;
-
-    public Book(Long id, String isbn, String title, String author, String description, String genre) {
-        this.id = id;
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.description = description;
-        this.genre = genre;
-    }
 }
