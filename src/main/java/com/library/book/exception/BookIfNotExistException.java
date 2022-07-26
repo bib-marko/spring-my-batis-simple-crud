@@ -1,8 +1,7 @@
 package com.library.book.exception;
 
 public class BookIfNotExistException extends RuntimeException{
-    public BookIfNotExistException(Long id) {
-        super(String.format("Book number: %d is not Existing!", id));
+    public BookIfNotExistException(String id) {
+        super(String.format("Book number: %s is not Existing!", id));
     }
-
 }
