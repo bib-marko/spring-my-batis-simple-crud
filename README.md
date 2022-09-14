@@ -1,17 +1,14 @@
 # spring-my-batis-simple-crud
  
 Sample Endpoint:
-> queryList - get the list
+> getAllBooks - get the list
 
-> queryDeletedList - get the list which is declared as deleted
+> newBook - add new book
 
-> save - save new data
+> deleteBook - delete book
 
-> update - update data
+> updateBook - update book
 
-> delete - delete data
-
-> restore - restore data
 
 
 
